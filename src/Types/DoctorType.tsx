@@ -1,5 +1,4 @@
-
-type Doctor = {
+export type Doctor = {
 
     doctorId: Number;
 
@@ -14,4 +13,3 @@ type Doctor = {
     isInHospital: boolean;
 
 }
-export default Doctor;
