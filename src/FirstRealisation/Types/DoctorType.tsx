@@ -1,6 +1,6 @@
 export type Doctor = {
 
-    doctorId: Number;
+    doctorId: number;
 
     firstName: string;
 
@@ -8,7 +8,7 @@ export type Doctor = {
 
     averageRate: number;
 
-    speciality: number;
+    speciality: string;
 
     isInHospital: boolean;
 
