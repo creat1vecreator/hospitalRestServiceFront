@@ -4,7 +4,7 @@ import CardComponent from "../FirstRealisation/Common/CardComponent";
 import React, {useEffect, useState} from "react";
 import {Doctor} from "../FirstRealisation/Types/DoctorType";
 import axios from "axios";
-import {getAllDoctors, getAllRequest} from "../FirstRealisation/DAL/HandlerOfRequestsDoc";
+import {createDoctor, getAllDoctors, getAllRequest} from "../FirstRealisation/DAL/HandlerOfRequestsDoc";
 import {Selection} from "../FirstRealisation/Common/Select";
 
 const MySelect: React.FC<any> = ({label, onChange, ...props }) => {
@@ -26,14 +26,14 @@ export const SignUpForm = () => {
 
     const [arrayOfObjects, setData] = useState<Doctor[]>([]);
     useEffect(() => {
-      getAllDoctors("db.txt").then((response) => {
+      getAllDoctors("db1.txt").then((response) => {
             console.log(response.data);
             setData(response.data);
         })
     }, []);
 
     const getDbData = (event: any) => {
-        axios.get("http://localhost:8080/doctors/getAllDoctors?db=" + event.target.value  ).then((response) => {
+        getAllDoctors(event.target.value).then((response) => {
             console.log(response.data);
             setData(response.data);
         })
@@ -43,10 +43,10 @@ export const SignUpForm = () => {
 
         <Formik
             initialValues={{
-                doctorId: '',
-                firstName: '',
+                doctorId: 0,
+                firstName: "",
                 lastName: '',
-                averageRate: '',
+                averageRate: 0,
                 speciality: '',
                 isInHospital: false,
                 selectDb: 'db1.txt',
@@ -71,6 +71,13 @@ export const SignUpForm = () => {
                 const{
                     selectDb, ...submitData
                 } = values
+
+                    createDoctor(selectDb, submitData).then(r => console.log(r))
+                        .then(() => {
+                            getAllDoctors(selectDb).then(r => {
+                                setData(r.data)
+                            });
+                        });
 
                 alert(JSON.stringify(submitData, null, 1));
                     setSubmitting(false);
@@ -119,6 +126,7 @@ export const SignUpForm = () => {
 
     {arrayOfObjects.map((Doctor: { doctorId: number; firstName: string; lastName: string; averageRate: number; speciality: string; isInHospital: boolean; }) =>
         <CardComponent
+            db={selectDb}
             key={Doctor.doctorId}
             doctorId={Doctor.doctorId}
             firstName={Doctor.firstName}
