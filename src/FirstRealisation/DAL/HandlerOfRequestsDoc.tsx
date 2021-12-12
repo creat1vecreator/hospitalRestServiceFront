@@ -24,3 +24,8 @@ export const createDoctor = (db: string, doctor: Doctor) => {
     return axios.post(url+ "/createDoctor", doctor, {params: {db}})
 }
 
+export const updateDoctor = (doctor: Doctor, db: string, doctorId: number) => {
+    return axios.post(url + "/updateDoctor", doctor, {params: {doctorId: doctorId,
+        db:db}});
+}
+

@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from "react";
 import {Doctor} from "../Types/DoctorType";
-import {createDoctor, getAllDoctors} from "../DAL/HandlerOfRequestsDoc";
+import {createDoctor, getAllDoctors, updateDoctor} from "../DAL/HandlerOfRequestsDoc";
 import {ErrorMessage, Field, Form, Formik} from "formik";
 import * as Yup from "yup";
 
-export const Edit: React.FC<any> = (doctorId, db) => {
+export const Edit: React.FC<any> = (doctorId: number, db) => {
     const [data, setData] = useState({});
     return (
 
@@ -36,22 +36,21 @@ export const Edit: React.FC<any> = (doctorId, db) => {
                     const{
                         selectDb, ...submitData
                     } = values
-
-                    createDoctor(db, submitData).then(r => console.log(r))
+                    updateDoctor(submitData, db, doctorId).then(r => console.log(r))
                         .then(() => {
                             getAllDoctors(selectDb).then(r => {
                                 setData(r.data)
                             });
                         });
 
-                    alert(JSON.stringify(submitData, null, 1));
                     setSubmitting(false);
 
+
                 }}
+
             >
                 <Form>
 
-                    <h3>{doctorId}</h3>
 
                     <label htmlFor="firstName">Имя</label>
                     <Field name="firstName" type="text"/>
@@ -78,6 +77,7 @@ export const Edit: React.FC<any> = (doctorId, db) => {
 
                 </Form>
             </Formik>
-    )
+
+)
 
 }

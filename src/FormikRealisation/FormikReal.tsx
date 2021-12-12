@@ -3,9 +3,7 @@ import * as Yup from 'yup';
 import CardComponent from "../FirstRealisation/Common/CardComponent";
 import React, {useEffect, useState} from "react";
 import {Doctor} from "../FirstRealisation/Types/DoctorType";
-import axios from "axios";
-import {createDoctor, getAllDoctors, getAllRequest} from "../FirstRealisation/DAL/HandlerOfRequestsDoc";
-import {Selection} from "../FirstRealisation/Common/Select";
+import {createDoctor, getAllDoctors} from "../FirstRealisation/DAL/HandlerOfRequestsDoc";
 
 const MySelect: React.FC<any> = ({label, onChange, ...props }) => {
     const [field, meta] = useField(props);
@@ -23,18 +21,18 @@ const MySelect: React.FC<any> = ({label, onChange, ...props }) => {
     );
 };
 export const SignUpForm = () => {
+    const [currentDb, setCurrentDb] = useState("db1.txt");
 
-    const [arrayOfObjects, setData] = useState<Doctor[]>([]);
+    const [doctors, setData] = useState<Doctor[]>([]);
     useEffect(() => {
-      getAllDoctors("db1.txt").then((response) => {
-            console.log(response.data);
+      getAllDoctors(currentDb).then((response) => {
             setData(response.data);
         })
     }, []);
 
     const getDbData = (event: any) => {
         getAllDoctors(event.target.value).then((response) => {
-            console.log(response.data);
+            setCurrentDb(event.target.value);
             setData(response.data);
         })
     }
@@ -112,7 +110,7 @@ export const SignUpForm = () => {
 
 
 
-                <MySelect label={""} name={"selectDb"}  onChange={getDbData}>
+                <MySelect label={"selectDb"} name={"selectDb"}  onChange={getDbData}>
                     <option value="">Выберите базу данных</option>
                     <option value="db1.txt"> База данных 1</option>
                     <option value="db2.txt"> База данных 2</option>
@@ -124,9 +122,9 @@ export const SignUpForm = () => {
         </Formik>
 
 
-    {arrayOfObjects.map((Doctor: { doctorId: number; firstName: string; lastName: string; averageRate: number; speciality: string; isInHospital: boolean; }) =>
+    {doctors.map((Doctor:{ doctorId: number; firstName: string; lastName: string; averageRate: number; speciality: string; isInHospital: boolean; }) =>
         <CardComponent
-            db={selectDb}
+            db={currentDb}
             key={Doctor.doctorId}
             doctorId={Doctor.doctorId}
             firstName={Doctor.firstName}
@@ -134,7 +132,8 @@ export const SignUpForm = () => {
             averageRate={Doctor.averageRate}
             speciality={Doctor.speciality}
             isInHospital={Doctor.isInHospital}/>) }
+            {console.log("Doctors:", doctors)};
         </div>
-    );
+);
 }
 

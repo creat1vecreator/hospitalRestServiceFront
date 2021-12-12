@@ -42,15 +42,18 @@ const MainPage = () => {
 
 
             </form>
-            {arrayOfObjects.map((Doctor: { doctorId: number; firstName: string; lastName: string; averageRate: number; speciality: string; isInHospital: boolean; }) =>
-                <CardComponent
-                    key={Doctor.doctorId}
-                    doctorId={Doctor.doctorId}
-                    firstName={Doctor.firstName}
-                    lastName={Doctor.lastName}
-                    averageRate={Doctor.averageRate}
-                    speciality={Doctor.speciality}
-                    isInHospital={Doctor.isInHospital}/>) }
+
+            {/*{arrayOfObjects.map((Doctor: { doctorId: number; firstName: string; lastName: string; averageRate: number; speciality: string; isInHospital: boolean; }) =>*/}
+            {/*    <CardComponent*/}
+            {/*        db={stateOfDbSelect}*/}
+            {/*        key={Doctor.doctorId}*/}
+            {/*        doctorId={Doctor.doctorId}*/}
+            {/*        firstName={Doctor.firstName}*/}
+            {/*        lastName={Doctor.lastName}*/}
+            {/*        averageRate={Doctor.averageRate}*/}
+            {/*        speciality={Doctor.speciality}*/}
+            {/*        isInHospital={Doctor.isInHospital}*/}
+            {/*    />*/}
         </div>
 
     )
