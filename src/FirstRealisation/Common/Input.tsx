@@ -2,8 +2,8 @@ import React, {useState} from "react";
 
 import {InputProps, InputRangeProps} from "../Types/InputType";
 
-export const Input: React.FC<InputProps> = ({ name, placeholder, validation}) => {
-    let [value, setValue] = useState("");
+export const Input: React.FC<InputProps> = ({ name, placeholder, validation, initValue = ''}) => {
+    let [value, setValue] = useState(initValue);
     const [error, setError] = useState("");
     // @ts-ignore
     return(

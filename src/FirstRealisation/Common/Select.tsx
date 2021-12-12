@@ -2,7 +2,7 @@ import React from "react";
 import {useState} from "react";
 import {SelectType} from "../Types/SelectType";
 
-export const Selection: React.FC<SelectType> = ({name, initValue, options, onChange}) => {
+export const Selection: React.FC<SelectType> = ({name, initValue, children, onChange}) => {
     const [option, setOption] = useState(initValue);
 
     return(<div>
@@ -10,11 +10,8 @@ export const Selection: React.FC<SelectType> = ({name, initValue, options, onCha
                 value={option}
                 onChange={(event) => {
                     setOption(event.target.value)
-                onChange()}}>
-            <option disabled>{initValue}</option>
-            {options.map((option, index) => {
-               return <option key={index}>{option}</option>
-            })}
+                onChange(event)}}>
+            {children}
         </select>
     </div>)
 }

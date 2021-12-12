@@ -15,12 +15,13 @@ import Select from "react-select/base";
 import {getAllRequest} from "../../DAL/HandlerOfRequestsDoc";
 
 
+
 const MainPage = () => {
 
     const[stateOfDbSelect, setState] = useState(dbNames.db1);
     const[formState, setFormState] = useState({});
     console.log(formState);
-    const arrayOfObjects: any = getAllRequest(stateOfDbSelect);
+    const arrayOfObjects: any = getAllRequest();
 
     // console.log(arrayOfObjects);
     return(<div className={style["form"]}>
