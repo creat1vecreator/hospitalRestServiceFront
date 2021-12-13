@@ -5,12 +5,8 @@ import {ifOnlyLetters} from "../../Validators/stringValidator";
 import {CheckBox} from "../../Common/CheckBox";
 import {Doctor} from "../../Types/DoctorType";
 import style from "./FormStyleMainPage.module.scss"
-import {Selection} from "../../Common/Select";
 import {dbNames, typesOfRequests} from "../../Options/OptionsForMainPage";
-import {typesOfDB} from "../../Options/OptionsForMainPage";
-import axios from "axios";
-import CardComponent from "../../Common/CardComponent";
-import Select from "react-select/base";
+
 // @ts-ignore
 import {getAllRequest} from "../../DAL/HandlerOfRequestsDoc";
 

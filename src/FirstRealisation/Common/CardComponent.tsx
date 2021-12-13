@@ -4,34 +4,26 @@ import React, { useState } from "react";
 
 import { Edit } from "./isEditing";
 
-const CardComponent: React.FC<Doctor & { db: string }> = (db, {
-                                                              doctorId,
-                                                              firstName,
-                                                              lastName,
-                                                              averageRate,
-                                                              speciality,
-                                                              isInHospital,
-
-                                                          }) => {
+const CardComponent: React.FC<Doctor & { db: string }> = (props) => {
     const [isEdit, setIsEdit] = useState(false);
     return (
         <div className={style.card}>
             {isEdit ? (
                 <>
-                    <h3> {doctorId}</h3>
+                    <h3> {props.doctorId}</h3>
                     <div>
-                        <Edit doctorId={doctorId} db={db} />
+                        <Edit doctorId={props.doctorId} db={props.db} />
 
                     </div>
                 </>
             ) : (
-                <>{console.log("doctorId", doctorId)}
-                    <h3>ID: {doctorId}</h3>
-                    <h3>Имя: {firstName}</h3>
-                    <h3>Фамилия: {lastName}</h3>
-                    <h3>Рейтинг: {averageRate}</h3>
-                    <h3>Специальность:{speciality}</h3>
-                    <h3>На рабочем месте: {isInHospital ? "Да" : "Нет"}</h3>
+                <>
+                    <h3>ID: {props.doctorId}</h3>
+                    <h3>Имя: {props.firstName}</h3>
+                    <h3>Фамилия: {props.lastName}</h3>
+                    <h3>Рейтинг: {props.averageRate}</h3>
+                    <h3>Специальность:{props.speciality}</h3>
+                    <h3>На рабочем месте: {props.isInHospital ? "Да" : "Нет"}</h3>
                 </>
             )}
             <button

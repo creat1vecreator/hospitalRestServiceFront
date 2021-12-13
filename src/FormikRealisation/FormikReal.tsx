@@ -27,7 +27,7 @@ export const SignUpForm = () => {
     useEffect(() => {
       getAllDoctors(currentDb).then((response) => {
             setData(response.data);
-        })
+        }).then(() => {console.log("Doctors before return",doctors)});
     }, []);
 
     const getDbData = (event: any) => {

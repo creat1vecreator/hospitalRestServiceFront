@@ -4,13 +4,13 @@ import {createDoctor, getAllDoctors, updateDoctor} from "../DAL/HandlerOfRequest
 import {ErrorMessage, Field, Form, Formik} from "formik";
 import * as Yup from "yup";
 
-export const Edit: React.FC<any> = (doctorId: number, db) => {
+export const Edit: React.FC<any> = (props) => {
     const [data, setData] = useState({});
     return (
 
             <Formik
                 initialValues={{
-                    doctorId: doctorId,
+                    doctorId: props.doctorId,
                     firstName: "",
                     lastName: '',
                     averageRate: 0,
@@ -36,7 +36,8 @@ export const Edit: React.FC<any> = (doctorId: number, db) => {
                     const{
                         selectDb, ...submitData
                     } = values
-                    updateDoctor(submitData, db, doctorId).then(r => console.log(r))
+                    console.log(submitData);
+                    updateDoctor(submitData, props.db, props.doctorId).then(r => console.log(r))
                         .then(() => {
                             getAllDoctors(selectDb).then(r => {
                                 setData(r.data)
