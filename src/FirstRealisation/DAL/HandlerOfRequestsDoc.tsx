@@ -28,4 +28,10 @@ export const updateDoctor = (doctor: Doctor, db: string, doctorId: number) => {
     return axios.post(url + "/updateDoctor", doctor, {params: {doctorId: doctorId,
         db:db}});
 }
-
+export const deleteDoctor = (doctorId: number, db: string, ) => {
+    console.log(doctorId, db)
+    return axios.delete(url + "/deleteDoctors", {params:
+            {db,
+            doctorId}
+    });
+}

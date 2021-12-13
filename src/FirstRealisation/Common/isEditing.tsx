@@ -36,6 +36,7 @@ export const Edit: React.FC<any> = (props) => {
                     const{
                         selectDb, ...submitData
                     } = values
+                    console.log(values)
                     console.log(submitData);
                     updateDoctor(submitData, props.db, props.doctorId).then(r => console.log(r))
                         .then(() => {
@@ -51,6 +52,10 @@ export const Edit: React.FC<any> = (props) => {
 
             >
                 <Form>
+
+                    <label htmlFor="doctorId">Введите id доктора</label>
+                    <Field name="doctorId" type="number"/>
+                    <ErrorMessage name="number"/>
 
 
                     <label htmlFor="firstName">Имя</label>

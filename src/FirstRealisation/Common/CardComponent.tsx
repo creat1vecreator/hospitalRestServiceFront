@@ -3,8 +3,23 @@ import style from "./Card.module.scss";
 import React, { useState } from "react";
 
 import { Edit } from "./isEditing";
+import {deleteDoctor} from "../DAL/HandlerOfRequestsDoc";
 
 const CardComponent: React.FC<Doctor & { db: string }> = (props) => {
+    const doctor = {
+        doctorId: props.doctorId,
+
+        firstName: props.firstName,
+
+        lastName: props.lastName,
+
+        averageRate: props.averageRate,
+
+        speciality: props.speciality,
+
+        isInHospital: props.isInHospital,
+
+    }
     const [isEdit, setIsEdit] = useState(false);
     return (
         <div className={style.card}>
@@ -32,6 +47,11 @@ const CardComponent: React.FC<Doctor & { db: string }> = (props) => {
                 }}
             >
                 Изменить сущность
+            </button>
+            <button onClick={() => {deleteDoctor(props.doctorId, props.db).then(r => {
+
+                console.log(r)})}}>
+                Удалить сущность
             </button>
         </div>
     );
