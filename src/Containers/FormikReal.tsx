@@ -1,9 +1,9 @@
 import { Formik, Field, Form, ErrorMessage, useField } from 'formik';
 import * as Yup from 'yup';
-import CardComponent from "../FirstRealisation/Common/CardComponent";
+import CardComponent from "../Common/Cards/CardComponent";
 import React, {useEffect, useState} from "react";
-import {Doctor} from "../FirstRealisation/Types/DoctorType";
-import {createDoctor, getAllDoctors} from "../FirstRealisation/DAL/HandlerOfRequestsDoc";
+import {Doctor} from "../Types/DoctorType";
+import {createDoctor, getAllDoctors} from "../DAL/HandlerOfRequestsDoc";
 
 const MySelect: React.FC<any> = ({label, onChange, ...props }) => {
     const [field, meta] = useField(props);

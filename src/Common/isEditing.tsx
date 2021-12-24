@@ -1,8 +1,7 @@
 import React, {useEffect, useState} from "react";
-import {Doctor} from "../Types/DoctorType";
-import {createDoctor, getAllDoctors, updateDoctor} from "../DAL/HandlerOfRequestsDoc";
 import {ErrorMessage, Field, Form, Formik} from "formik";
 import * as Yup from "yup";
+import {getAllDoctors, updateDoctor} from "../DAL/HandlerOfRequestsDoc";
 
 export const Edit: React.FC<any> = (props) => {
     const [data, setData] = useState({});
@@ -47,7 +46,6 @@ export const Edit: React.FC<any> = (props) => {
 
                     setSubmitting(false);
 
-
                 }}
 
             >
@@ -78,12 +76,10 @@ export const Edit: React.FC<any> = (props) => {
                     <Field name="isInHospital" type="checkbox"/>
                     <ErrorMessage name="isInHospital"/>
 
-
                     <button type="submit">Submit</button>
 
                 </Form>
             </Formik>
 
 )
-
 }

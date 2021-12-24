@@ -1,9 +1,9 @@
-import { Doctor } from "../Types/DoctorType";
+import { Doctor } from "../../Types/DoctorType";
 import style from "./Card.module.scss";
 import React, { useState } from "react";
 
-import { Edit } from "./isEditing";
-import {deleteDoctor} from "../DAL/HandlerOfRequestsDoc";
+import {deleteDoctor} from "../../DAL/HandlerOfRequestsDoc";
+import {Edit} from "../isEditing";
 
 const CardComponent: React.FC<Doctor & { db: string }> = (props) => {
     const doctor = {
@@ -48,8 +48,8 @@ const CardComponent: React.FC<Doctor & { db: string }> = (props) => {
             >
                 Изменить сущность
             </button>
-            <button onClick={() => {deleteDoctor(props.doctorId, props.db).then(r => {
 
+            <button onClick={() => {deleteDoctor(props.doctorId, props.db).then(r => {
                 console.log(r)})}}>
                 Удалить сущность
             </button>
